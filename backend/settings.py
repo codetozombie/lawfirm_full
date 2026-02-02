@@ -27,18 +27,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-@u%6zv$9^52vc$p!br2i2u+u&79mz=@(uk#67*&)+!sw(k%m-l')
+SECRET_KEY = os.getenv(
+    'SECRET_KEY', 'django-insecure-@u%6zv$9^52vc$p!br2i2u+u&79mz=@(uk#67*&)+!sw(k%m-l')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://showcaselawfirm.vercel.app"
     # Add your Vercel domain here later, e.g., "https://lawfirm.vercel.app"
 ]
+
+# Add these CORS settings
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "https://showcaselawfirm.vercel.app"
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,13 +56,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles','rest_framework',
+    'django.contrib.staticfiles', 'rest_framework',
     'corsheaders',
     'core',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # <--
+    'corsheaders.middleware.CorsMiddleware',  # <--
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -129,6 +138,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Default from email
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
