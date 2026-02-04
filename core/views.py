@@ -48,17 +48,17 @@ class ContactSubmissionViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet)
         # ---------------------------------------------------------
         # Email 2: Confirmation to the CLIENT (The Sender)
         # ---------------------------------------------------------
-        client_subject = "Inquiry Received - Amoako & Associates"
+        client_subject = "Inquiry Received - Morse & Associates"
         client_message = f"""
         Dear {submission.name},
 
-        Thank you for contacting Amoako & Associates. 
+        Thank you for contacting Morse & Associates. 
 
         We have received your inquiry and our team will review your message shortly. If your matter requires urgent attention, please call our office directly.
 
         Best Regards,
         
-        Amoako & Associates
+        Morse & Associates
         Attorneys at Law
         """
 
